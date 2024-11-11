@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChatMessage } from "@/components/ChatMessage";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { sendMessage } from "@/lib/gemini";
+import { sendMessage, setModel } from "@/lib/gemini";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import Navbar from "@/components/Navbar";
 
 interface Message {
   content: string;
@@ -17,6 +17,14 @@ const Index = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  const handleModelChange = (model: string) => {
+    setModel(model);
+    toast({
+      title: "Model Changed",
+      description: `Now using ${model}`,
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,8 +51,8 @@ const Index = () => {
 
   return (
     <div className="flex h-screen flex-col bg-background">
-      <ThemeToggle />
-      <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+      <Navbar onModelChange={handleModelChange} />
+      <div className="flex-1 overflow-y-auto p-4 pt-20 custom-scrollbar">
         <div className="space-y-4">
           {messages.map((message, index) => (
             <ChatMessage

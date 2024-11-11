@@ -7,9 +7,17 @@ import {
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
-const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-pro-002",
-});
+let currentModel = "gemini-1.5-pro-002";
+
+export const setModel = (model: string) => {
+  currentModel = model;
+};
+
+const getModel = () => {
+  return genAI.getGenerativeModel({
+    model: currentModel,
+  });
+};
 
 const generationConfig = {
   temperature: 1,
@@ -19,7 +27,7 @@ const generationConfig = {
   responseMimeType: "text/plain",
 };
 
-export const chatSession = model.startChat({
+export const chatSession = getModel().startChat({
   generationConfig,
   history: [],
 });
