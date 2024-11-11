@@ -17,7 +17,7 @@ const Navbar = ({ onModelChange }: { onModelChange: (model: string) => void }) =
             alt="Gemini Logo" 
             className="h-8 w-8"
           />
-          <span className="font-semibold text-xl">Gemini</span>
+          <span className="font-semibold text-xl hidden sm:inline">Gemini</span>
         </div>
         <div className="flex items-center gap-4">
           <Select onValueChange={onModelChange} defaultValue="gemini-1.5-pro-002">
