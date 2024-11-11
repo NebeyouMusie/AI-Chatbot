@@ -1,4 +1,4 @@
-# Welcome to your GPT Engineer project
+# AI Chatbot
 
 ## Project info
 
