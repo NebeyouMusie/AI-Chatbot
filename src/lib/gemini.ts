@@ -8,9 +8,15 @@ const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 let currentModel = "gemini-1.5-pro-002";
+let currentChatSession: any = null;
 
 export const setModel = (model: string) => {
   currentModel = model;
+  // Reset chat session when model changes
+  currentChatSession = getModel().startChat({
+    generationConfig,
+    history: [],
+  });
 };
 
 const getModel = () => {
@@ -27,14 +33,15 @@ const generationConfig = {
   responseMimeType: "text/plain",
 };
 
-export const chatSession = getModel().startChat({
+// Initialize chat session
+currentChatSession = getModel().startChat({
   generationConfig,
   history: [],
 });
 
 export const sendMessage = async (message: string) => {
   try {
-    const result = await chatSession.sendMessage(message);
+    const result = await currentChatSession.sendMessage(message);
     return result.response.text();
   } catch (error) {
     console.error("Error sending message:", error);
