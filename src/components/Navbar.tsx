@@ -19,19 +19,21 @@ const Navbar = ({ onModelChange }: { onModelChange: (model: string) => void }) =
           />
           <span className="font-semibold text-xl">Gemini</span>
         </div>
-        <Select onValueChange={onModelChange} defaultValue="gemini-1.5-pro-002">
-          <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Select model" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="gemini-1.5-pro-002">gemini-1.5-pro-002</SelectItem>
-            <SelectItem value="gemini-1.5-pro">gemini-1.5-pro</SelectItem>
-            <SelectItem value="gemini-1.5-flash">gemini-1.5-flash</SelectItem>
-            <SelectItem value="gemini-1.5-flash-002">gemini-1.5-flash-002</SelectItem>
-            <SelectItem value="gemini-1.5-flash-8b">gemini-1.5-flash-8b</SelectItem>
-          </SelectContent>
-        </Select>
-        <ThemeToggle />
+        <div className="flex items-center gap-4">
+          <Select onValueChange={onModelChange} defaultValue="gemini-1.5-pro-002">
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Select model" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="gemini-1.5-pro-002">gemini-1.5-pro-002</SelectItem>
+              <SelectItem value="gemini-1.5-pro">gemini-1.5-pro</SelectItem>
+              <SelectItem value="gemini-1.5-flash">gemini-1.5-flash</SelectItem>
+              <SelectItem value="gemini-1.5-flash-002">gemini-1.5-flash-002</SelectItem>
+              <SelectItem value="gemini-1.5-flash-8b">gemini-1.5-flash-8b</SelectItem>
+            </SelectContent>
+          </Select>
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );
